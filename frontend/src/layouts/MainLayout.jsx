@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import { AnimatePresence } from 'framer-motion';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import ParticleTextEffect from '../components/ui/ParticleTextEffect';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import ParticleTextEffect from '../components/ui/ParticleTextEffect.jsx';
 
 const MainLayout = () => {
   const location = useLocation();

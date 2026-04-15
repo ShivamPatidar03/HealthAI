@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import DiabetesPrediction from './pages/DiabetesPrediction';
-import HeartDiseasePrediction from './pages/HeartDiseasePrediction';
-import StressPrediction from './pages/StressPrediction';
+import MainLayout from './layouts/MainLayout.jsx';
+import Home from './pages/Home.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import DiabetesPrediction from './pages/DiabetesPrediction.jsx';
+import HeartDiseasePrediction from './pages/HeartDiseasePrediction.jsx';
+import StressPrediction from './pages/StressPrediction.jsx';
 
 const App = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Card, CardContent } from '../ui/card';
-import { Marquee } from '../ui/3d-testimonails';
+import { Marquee } from '../ui/3d-testimonials.jsx';
 
 const TESTIMONIALS = [
   {

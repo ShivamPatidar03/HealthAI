@@ -3,7 +3,7 @@
 import * as React from "react"
 import { cva } from "class-variance-authority"
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
-import { cn } from "../../lib/utils"
+import { cn } from "@/lib/utils"
 
 const cardVariants = cva("absolute will-change-transform", {
   variants: {

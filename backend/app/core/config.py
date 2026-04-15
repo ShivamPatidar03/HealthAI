@@ -5,7 +5,12 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "HealthAI API"
     API_V1_STR: str = "/api/v1"
     
+    # Deployment
+    DEBUG: bool = False
+    PORT: int = 8000
+    
     # CORS
+    # Can be a list or a comma-separated string
     CORS_ORIGINS: Union[str, List[str]] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",

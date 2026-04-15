@@ -8,6 +8,9 @@ def predict_stress(data: StressInput) -> StressOutput:
     features_ordered = model_loader.stress_features
     label_map = model_loader.stress_label_map
     
+    if model is None:
+        raise ValueError("Stress prediction model is currently unavailable on the server (file too large for repository). Please contact support or use Diabetes/Heart models.")
+    
     data_dict = data.model_dump()
     
     input_list = []

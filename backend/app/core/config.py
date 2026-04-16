@@ -12,10 +12,10 @@ class Settings(BaseSettings):
     # CORS
     # Can be a list or a comma-separated string
     CORS_ORIGINS: Union[str, List[str]] = [
-        "*",
+        "https://health-ai-pearl-ten.vercel.app",
+        "http://localhost:3000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://health-ai-pearl-ten.vercel.app",
     ]
 
     model_config = SettingsConfigDict(
@@ -28,7 +28,8 @@ class Settings(BaseSettings):
     @property
     def get_cors_origins(self) -> List[str]:
         if isinstance(self.CORS_ORIGINS, str):
-            return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+            # Support comma-separated strings from environment variables
+            return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
         return self.CORS_ORIGINS
 
 settings = Settings()

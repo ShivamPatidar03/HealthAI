@@ -1,10 +1,13 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
-const fetchWithTimeout = async (endpoint, options = {}, timeout = 10000) => {
+const fetchWithTimeout = async (endpoint, options = {}, timeout = 12000) => {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
     
-    const url = `${API_BASE_URL.replace(/\/$/, '')}/${endpoint.replace(/^\//, '')}`;
+    // Ensure accurate URL construction without trailing/leading slash conflicts
+    const cleanBaseURL = API_BASE_URL.replace(/\/$/, '');
+    const cleanEndpoint = endpoint.replace(/^\//, '');
+    const url = `${cleanBaseURL}/${cleanEndpoint}`;
     
     try {
         const response = await fetch(url, {
@@ -18,16 +21,28 @@ const fetchWithTimeout = async (endpoint, options = {}, timeout = 10000) => {
         clearTimeout(id);
         
         if (!response.ok) {
-            const err = await response.json().catch(() => ({}));
-            throw new Error(err.detail || `Request failed: ${response.statusText}`);
+            let errorDetail = response.statusText;
+            try {
+                const errData = await response.json();
+                errorDetail = errData.detail || errorDetail;
+            } catch (e) {
+                // Not a JSON error
+            }
+            throw new Error(`API Error (${response.status}): ${errorDetail}`);
         }
         
         return await response.json();
     } catch (error) {
         clearTimeout(id);
+        
         if (error.name === 'AbortError') {
-            throw new Error('Request timed out');
+            throw new Error('Connection timeout: The backend is taking too long to respond. It might be waking up (Cold Start).');
         }
+        
+        if (error.message.includes('Failed to fetch')) {
+            throw new Error('Network Error: Could not connect to the backend. Please check your internet or verify if the backend is live.');
+        }
+        
         throw error;
     }
 };

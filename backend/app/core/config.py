@@ -4,13 +4,9 @@ from typing import List, Union
 class Settings(BaseSettings):
     PROJECT_NAME: str = "HealthAI API"
     API_V1_STR: str = "/api/v1"
-    
-    # Deployment
     DEBUG: bool = False
     PORT: int = 8000
-    
-    # CORS
-    # Can be a list or a comma-separated string
+
     CORS_ORIGINS: Union[str, List[str]] = [
         "https://health-ai-pearl-ten.vercel.app",
         "http://localhost:3000",
@@ -28,7 +24,6 @@ class Settings(BaseSettings):
     @property
     def get_cors_origins(self) -> List[str]:
         if isinstance(self.CORS_ORIGINS, str):
-            # Support comma-separated strings from environment variables
             return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
         return self.CORS_ORIGINS
 

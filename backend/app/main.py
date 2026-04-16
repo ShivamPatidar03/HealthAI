@@ -5,7 +5,6 @@ from .routes import diabetes, heart, stress
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
-# Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.get_cors_origins,
@@ -14,7 +13,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers
 app.include_router(diabetes.router, prefix="/predict/diabetes", tags=["Diabetes"])
 app.include_router(heart.router, prefix="/predict/heart", tags=["Heart"])
 app.include_router(stress.router, prefix="/predict/stress", tags=["Stress"])

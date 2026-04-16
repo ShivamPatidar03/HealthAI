@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     # CORS
     # Can be a list or a comma-separated string
     CORS_ORIGINS: Union[str, List[str]] = [
+        "*",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "https://health-ai-pearl-ten.vercel.app",

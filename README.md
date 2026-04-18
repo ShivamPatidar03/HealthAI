@@ -86,6 +86,6 @@ health_monitoring_system/
 
 ---
 
-## 📄 License
+## ✒️ Author
 
-This project is licensed under the MIT License.
+- **Shivam Patidar**
